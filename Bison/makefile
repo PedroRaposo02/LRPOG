@@ -113,6 +113,7 @@ else
 endif
 
 run: $(NAME)
+	@echo -n "## running....\n \n \n \n \n"
 	./$(NAME) $(RUN_OPTS)
 
 clean:
