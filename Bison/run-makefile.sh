@@ -7,12 +7,11 @@
 # check if -c flag is used
 if [[ $1 == "-c" ]]; then
 CLEAN__FLAG=1
-fi
-
-if [[ $1 == "-g" ]]; then
+elif [[ $1 == "-g" ]]; then
 GRAPH_FLAG=1
+elif [[ $1 == "-r" ]]; then
+REPORT_FLAG=1
 fi
-
 
 # get makefile name in current directory, either makefile or Makefile
 
@@ -54,17 +53,15 @@ fi
 if((CLEAN__FLAG)); then
   # Run the makefile
   make clean
-  exit 0
-fi
-
-if((GRAPH_FLAG)); then
+elif((GRAPH_FLAG)); then
   # Run the makefile
   make graph
-  exit 0
+elif((REPORT_FLAG)); then
+  # Run the makefile
+  make report
+else
+  make run
 fi
-
-# Run the makefile
-make run
 
 # removes the makefile if not in current directory
 rm "$MAKEFILE_NAME"
