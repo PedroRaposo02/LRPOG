@@ -9,6 +9,11 @@ if [[ $1 == "-c" ]]; then
 CLEAN__FLAG=1
 fi
 
+if [[ $1 == "-g" ]]; then
+GRAPH_FLAG=1
+fi
+
+
 # get makefile name in current directory, either makefile or Makefile
 
 MAKEFILE_NAME=$(ls | grep -i -E 'makefile|Makefile' | head -1)
@@ -51,6 +56,13 @@ if((CLEAN__FLAG)); then
   make clean
   exit 0
 fi
+
+if((GRAPH_FLAG)); then
+  # Run the makefile
+  make graph
+  exit 0
+fi
+
 # Run the makefile
 make run
 
